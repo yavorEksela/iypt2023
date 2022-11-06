@@ -15,6 +15,5 @@ def V(T,X,n):
         res[i]=2*popt[0]*T[i]+popt[1]
     return res
 
-#print(V(data.t,data.xA,2))
 plt.plot(data.t,V(data.t,data.xA,10))
 plt.show()

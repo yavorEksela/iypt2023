@@ -5,18 +5,19 @@ from scipy.integrate import solve_ivp
 N=10**5
 tb=0
 te=2
-phi0=np.pi/2
-omega0=0
 dt=(tb-te)/N
-A=-11067
-a=3.05*10**-2
+#A=-11067*np.pi/180
+A=-200 
+a=4.05*10**-2
 b=4.366
-c=4.449
+c=4.449+2
 #d=0.03037
 d=0.0001
-
+l2=0.016
 t=np.linspace(tb,te,N)
 
+phi0=0
+omega0=0
 x0=0
 y0=0
 vx0=0
@@ -39,5 +40,9 @@ res=solve_ivp(autism,(tb,te),u0,rtol=1e-10,method="RK45",t_eval=t)
 
 print(len(res.t))
 
-plt.plot(res.y[2,:],res.y[4,:])
+x2=res.y[2,:]+l2*np.cos(res.y[0,:])
+y2=res.y[4,:]+l2*np.sin(res.y[0,:])
+#plt.plot(res.y[2,:],res.y[4,:])
+plt.title("c={}".format(c))
+plt.plot(x2,y2)
 plt.show()
